@@ -10,7 +10,7 @@ def generateMap():
     tiles = world.get_terrain()
     print(tiles)
 
-    return tiles
+    return world
 
 
 def drawMap(xoffset, yoffset, tiles, display, map):

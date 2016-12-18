@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+import actions
 from pygame.locals import *
 
 from mapDraw import drawMap, generateMap
@@ -56,8 +57,10 @@ def gameloop():
     pygame.display.set_caption("Isometric")
     clock = pygame.time.Clock()
     pygame.mixer.init()
-    # mapmusic = pygame.mixer.music.load('audio/music/.mp3')
-    # mapmusic = pygame.mixer.music.load('audio/sfx/menu_screen.mp3')
+
+    #mapmusic = pygame.mixer.music.load('audio/music/.mp3')
+    #mapmusic = pygame.mixer.music.load('audio/sfx/menu_screen.mp3')
+
     walk = [pygame.mixer.Sound('audio/sfx/footstep01.ogg'), pygame.mixer.Sound('audio/sfx/footstep01.ogg')]
     font = pygame.font.Font('fonts/Minecraft.ttf', 16)
 
@@ -71,11 +74,12 @@ def gameloop():
              pygame.image.load('images/tiles/wall.png').convert(),
              pygame.image.load('images/tiles/water.png').convert(),
              pygame.image.load('images/tiles/wood.png').convert()]
-    blocking_tiles = [1, 2]
+    blocking_tiles = []
     bg = pygame.image.load('images/bgs/stardust.png').convert()
 
     # Generate our map
-    map = generateMap()
+    world = generateMap()
+    map = world.get_terrain()
 
     # Setup our sprites
     players = [playerSprite(), ]
@@ -111,6 +115,7 @@ def gameloop():
         for event in pygame.event.get():
             # Mouse Bindings
             if event.type == MOUSEBUTTONDOWN:
+                # NOTICE (paolo) : sound is not defined
                 # sound.play()
                 mx, my = pygame.mouse.get_pos()
                 print("%s,%s" % (mx, my))
@@ -160,6 +165,16 @@ def gameloop():
                 walk[random.randrange(2)].play()
                 player_group.update('d')
 
+        if not xpos == len(map[0]) - 1 and keys[K_b]:
+
+                actions.build_street(world, ypos, xpos)
+
+                walk[random.randrange(2)].play()
+                player_group.update('d')
+
+
+
+
         if health < 100:
             health += regen
 
@@ -191,7 +206,7 @@ def gameloop():
         # Info
         if info_toggle:
             # label and version
-            label = font.render('isometric v%s' % version, True, (250, 250, 250))
+            label = font.render('pyCity v%s' % version, True, (250, 250, 250))
             label_obj = label.get_rect()
             label_box = label_obj.center = (680, 580)
             display.blit(label, label_box)
