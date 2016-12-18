@@ -80,7 +80,9 @@ def gameloop():
     tiles = dict([(0, pygame.image.load('images/tiles/grass.png').convert()),
                   (1, pygame.image.load('images/tiles/wall.png').convert()),
                   (2, pygame.image.load('images/tiles/water.png').convert()),
-                  (3, pygame.image.load('images/tiles/wood.png').convert())])
+                  (3, pygame.image.load('images/tiles/wood.png').convert()),
+                  (4, pygame.image.load('images/tiles/houses.png').convert())],
+                 )
 
     blocking_tiles = []
     bg = pygame.image.load('images/bgs/stardust.png').convert()
@@ -176,6 +178,13 @@ def gameloop():
         if not xpos == len(map[0]) - 1 and keys[K_b]:
 
                 actions.build_street(world, ypos, xpos)
+
+                walk[random.randrange(2)].play()
+                player_group.update('d')
+
+        if not xpos == len(map[0]) - 1 and keys[K_h]:
+
+                actions.build_house(world, ypos, xpos)
 
                 walk[random.randrange(2)].play()
                 player_group.update('d')
