@@ -23,8 +23,7 @@ def build_house(world, i, j):
 
 
 def build_factory(world, i, j):
-    if world.get_terrain_unit(i, j) == 0 and is_close_to(world, i, j, terrain.RESOURCE_ORE) and is_close_to(world, i, j,
-                                                                                                            BUILDING_TYPE_STREET):
+    if world.get_terrain_unit(i, j) == 0 and is_close_to(world, i, j, terrain.RESOURCE_ORE) and is_close_to(world, i, j, BUILDING_TYPE_STREET):
         world.set_terrain_unit(i, j, BUILDING_TYPE_FACTORY)
         return True
 
