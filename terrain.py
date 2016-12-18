@@ -1,14 +1,13 @@
 import random
 import math
 
-RESOURCE_ORE = 'ORE'
-RESOURCE_FOOD = 'FOOD'
+RESOURCE_ORE = 3
+RESOURCE_FOOD = 2
 PERCENTAGE_ORE = 3
 PERCENTAGE_FOOD = 3
 
 
 class Map:
-
     terrain = [[]]
 
     def get_terrain(self):
@@ -29,7 +28,7 @@ class Map:
             return self.terrain[i][j]
 
     def set_terrain_unit(self, i, j, resource):
-            self.terrain[i][j] = resource
+        self.terrain[i][j] = resource
 
     def spawn_resource(self, resource, num_resource, i, j):
         if num_resource == 0:
@@ -69,5 +68,5 @@ class Map:
 
 
 def get_close_indexes(i, j):
-    return [(i, j), (i, j-1), (i-1, j-1), (i-1, j), (i-1, j+1), (i, j+1), (i+1, j+1), (i+1, j), (i+1, j-1)]
-
+    return [(i, j), (i, j - 1), (i - 1, j - 1), (i - 1, j), (i - 1, j + 1), (i, j + 1), (i + 1, j + 1), (i + 1, j),
+            (i + 1, j - 1)]
