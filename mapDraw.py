@@ -13,14 +13,14 @@ def generateMap():
     return world
 
 
-def drawMap(xoffset, yoffset, tiles, display, map):
+def drawMap(xoffset, yoffset, tiles, display, world):
     currentRow = 0  # y
     currentTile = 0  # x
-    for row in map:
+    for row in world:
         for tile in row:
-            tileImage = tiles[map[currentRow][currentTile]]
+            tileImage = tiles[world[currentRow][currentTile]]
             tileImage.set_colorkey((0, 0, 0))
-
+            # TODO (@everyone) : let's try to understand that 64 value :S
             cartx = currentTile * 64
             carty = currentRow * 64
 

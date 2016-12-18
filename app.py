@@ -54,26 +54,27 @@ def gameloop():
     # Load Resources
     pygame.init()
     display = pygame.display.set_mode((display_height, display_width), DOUBLEBUF)
-    pygame.display.set_caption("Isometric")
+    pygame.display.set_caption("pyCity")
     clock = pygame.time.Clock()
     pygame.mixer.init()
 
-    #mapmusic = pygame.mixer.music.load('audio/music/.mp3')
-    #mapmusic = pygame.mixer.music.load('audio/sfx/menu_screen.mp3')
+    # mapmusic = pygame.mixer.music.load('audio/music/.mp3')
+    # mapmusic = pygame.mixer.music.load('audio/sfx/menu_screen.mp3')
 
     walk = [pygame.mixer.Sound('audio/sfx/footstep01.ogg'), pygame.mixer.Sound('audio/sfx/footstep01.ogg')]
     font = pygame.font.Font('fonts/Minecraft.ttf', 16)
 
     # Load all frames of animation for the player
-    player = [pygame.image.load('images/obj/player/character_stand_l.png').convert(),
-              pygame.image.load('images/obj/player/character_stand_l2.png').convert(),
-              pygame.image.load('images/obj/player/character_stand_r.png').convert(),
-              pygame.image.load('images/obj/player/character_stand_r2.png').convert()]
+    # player = [pygame.image.load('images/obj/player/character_stand_l.png').convert(),
+    #          pygame.image.load('images/obj/player/character_stand_l2.png').convert(),
+    #         pygame.image.load('images/obj/player/character_stand_r.png').convert(),
+    #          pygame.image.load('images/obj/player/character_stand_r2.png').convert()]
 
     tiles = [pygame.image.load('images/tiles/grass.png').convert(),
              pygame.image.load('images/tiles/wall.png').convert(),
              pygame.image.load('images/tiles/water.png').convert(),
              pygame.image.load('images/tiles/wood.png').convert()]
+
     blocking_tiles = []
     bg = pygame.image.load('images/bgs/stardust.png').convert()
 
@@ -171,9 +172,6 @@ def gameloop():
 
                 walk[random.randrange(2)].play()
                 player_group.update('d')
-
-
-
 
         if health < 100:
             health += regen

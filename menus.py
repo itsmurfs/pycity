@@ -6,7 +6,7 @@ from config import display_height, display_width, version
 
 pygame.init()
 display = pygame.display.set_mode((display_height, display_width))
-pygame.display.set_caption('Isometric v%s' % version)
+pygame.display.set_caption('PyCity v%s' % version)
 start = [pygame.image.load('images/obj/button.png').convert(), pygame.image.load('images/obj/button_i.png').convert()]
 menubg = pygame.image.load('images/obj/mainmenubg.png').convert()
 
@@ -18,7 +18,7 @@ def quit():
     pygame.quit()
     sys.exit()
 
-
+# NOTICE (Paolo): main is the gameloop function :P
 def mainmenu(main):
     titleFont = pygame.font.Font('fonts/04B_30.ttf', 72)
     subFont = pygame.font.Font('fonts/04B_30.ttf', 32)
