@@ -68,12 +68,19 @@ def gameloop():
     # player = [pygame.image.load('images/obj/player/character_stand_l.png').convert(),
     #          pygame.image.load('images/obj/player/character_stand_l2.png').convert(),
     #         pygame.image.load('images/obj/player/character_stand_r.png').convert(),
-    #          pygame.image.load('images/obj/player/character_stand_r2.png').convert()]
+    #        pygame.image.load('images/obj/player/character_stand_r2.png').convert()]
 
-    tiles = [pygame.image.load('images/tiles/grass.png').convert(),
-             pygame.image.load('images/tiles/wall.png').convert(),
-             pygame.image.load('images/tiles/water.png').convert(),
-             pygame.image.load('images/tiles/wood.png').convert()]
+
+    # tiles = [pygame.image.load('images/tiles/grass.png').convert(),
+    #          pygame.image.load('images/tiles/wall.png').convert(),
+    #          pygame.image.load('images/tiles/water.png').convert(),
+    #          pygame.image.load('images/tiles/wood.png').convert()]
+
+    # NOTICE (Paolo) : ID(3) is used for streets
+    tiles = dict([(0, pygame.image.load('images/tiles/grass.png').convert()),
+                  (1, pygame.image.load('images/tiles/wall.png').convert()),
+                  (2, pygame.image.load('images/tiles/water.png').convert()),
+                  (3, pygame.image.load('images/tiles/wood.png').convert())])
 
     blocking_tiles = []
     bg = pygame.image.load('images/bgs/stardust.png').convert()
