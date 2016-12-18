@@ -21,16 +21,17 @@ def quit():
 
 def mainmenu(main):
     titleFont = pygame.font.Font('fonts/04B_30.ttf', 72)
-    # subFont = pygame.font.Font('fonts/04B_30.ttf',32)
-    titleSurf = titleFont.render('Isometric', True, (0, 0, 0))
-    # subSurf = subFont.render('by Ryan Hartje', True, (0,0,0))
+    subFont = pygame.font.Font('fonts/04B_30.ttf', 32)
+    titleSurf = titleFont.render('pyCity', True, (0, 0, 0))
+    subSurf = subFont.render('by itSmurfs', True, (0, 0, 0))
     titleRect = titleSurf.get_rect()
-    # subRect = subSurf.get_rect()
+    subRect = subSurf.get_rect()
+
     titleRect.center = ((400, 100))
-    # subRect.center = ((400,200))
+    subRect.center = ((400, 200))
 
     # MUTED, save me
-    # pygame.mixer.music.play(0)
+    pygame.mixer.music.play(0)
     while True:
         for event in pygame.event.get():
             # This is for when you click X on the game window
@@ -51,8 +52,7 @@ def mainmenu(main):
                 display.blit(menubg, (x, y))
 
         display.blit(titleSurf, titleRect)
-        # display.blit(subSurf, subRect)
-
+        display.blit(subSurf, subRect)
 
         button("Start", 300, 300, 200, 50, start[0], start[1], main)
         pygame.display.update()
@@ -77,8 +77,8 @@ def button(msg, x, y, w, h, inactive_image, active_image, action=None):
         # pygame.draw.rect(display, inactive_image,(x,y,w,h))
         display.blit(active_image, (x, y))
         played = False
-    smallText = pygame.font.Font("fonts/Minecraft.ttf", 26)
 
+    smallText = pygame.font.Font("fonts/Minecraft.ttf", 26)
     textSurf = smallText.render(msg, True, (245, 245, 245))
     textRect = textSurf.get_rect()
     textRect.center = ((x + (w / 2)), (y + (h / 2)))
