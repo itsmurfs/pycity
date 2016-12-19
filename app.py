@@ -76,7 +76,7 @@ def gameloop():
     #          pygame.image.load('images/tiles/water.png').convert(),
     #          pygame.image.load('images/tiles/wood.png').convert()]
 
-    # NOTICE (Paolo) : ID(3) is used for streets
+    # NOTICE (Paolo) : ID(1) is used for streets
     tiles = dict([(0, pygame.image.load('images/tiles/grass.png').convert()),
                   (1, pygame.image.load('images/tiles/wall.png').convert()),
                   (2, pygame.image.load('images/tiles/water.png').convert()),
