@@ -81,8 +81,9 @@ def gameloop():
                   (1, pygame.image.load('images/tiles/wall.png').convert()),
                   (2, pygame.image.load('images/tiles/water.png').convert()),
                   (3, pygame.image.load('images/tiles/wood.png').convert()),
-                  (4, pygame.image.load('images/tiles/houses.png').convert())],
-                 )
+                  (4, pygame.image.load('images/tiles/houses.png').convert()),
+                  (5, pygame.image.load('images/tiles/factory.png').convert()),
+                  (6, pygame.image.load('images/tiles/farm.png').convert())],)
 
     blocking_tiles = []
     bg = pygame.image.load('images/bgs/stardust.png').convert()
@@ -188,6 +189,20 @@ def gameloop():
 
                 walk[random.randrange(2)].play()
                 player_group.update('d')
+
+        if not xpos == len(map[0]) - 1 and keys[K_g]:
+
+                actions.build_farm(world, ypos, xpos)
+
+                walk[random.randrange(2)].play()
+                player_group.update('d')
+
+        if not xpos == len(map[0]) - 1 and keys[K_f]:
+            actions.build_factory(world, ypos, xpos)
+
+            walk[random.randrange(2)].play()
+            player_group.update('d')
+
 
         if health < 100:
             health += regen
