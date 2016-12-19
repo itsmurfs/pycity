@@ -20,7 +20,7 @@ def drawMap(xoffset, yoffset, tiles, display, world):
         for tile in row:
             tileImage = tiles[world[currentRow][currentTile]]
             tileImage.set_colorkey((0, 0, 0))
-            # TODO (@everyone) : let's try to understand that 64 value :S
+            # Notice (Paolo) : 64 is the size in px of the tile png file (64x64)
             cartx = currentTile * 64
             carty = currentRow * 64
 

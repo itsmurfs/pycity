@@ -22,13 +22,13 @@ class playerSprite(pygame.sprite.Sprite):
         self.anim = 0
         self.image = self.frames[0]
 
+
     def update(self, direction):
         if direction == 'u' or direction == 'l':
             self.anim = random.randrange(0, 2)
         else:
             self.anim = random.randrange(2, 4)
             self.image = self.frames[self.anim]
-
 
 class itemSprite(pygame.sprite.Sprite):
     norm = [pygame.image.load('images/obj/coin/coin_1.png'),
@@ -60,21 +60,10 @@ def gameloop():
 
     # mapmusic = pygame.mixer.music.load('audio/music/.mp3')
     # mapmusic = pygame.mixer.music.load('audio/sfx/menu_screen.mp3')
+    test_image = pygame.image.load('images/tiles/test2.png')
 
     walk = [pygame.mixer.Sound('audio/sfx/footstep01.ogg'), pygame.mixer.Sound('audio/sfx/footstep01.ogg')]
     font = pygame.font.Font('fonts/Minecraft.ttf', 16)
-
-    # Load all frames of animation for the player
-    # player = [pygame.image.load('images/obj/player/character_stand_l.png').convert(),
-    #          pygame.image.load('images/obj/player/character_stand_l2.png').convert(),
-    #         pygame.image.load('images/obj/player/character_stand_r.png').convert(),
-    #        pygame.image.load('images/obj/player/character_stand_r2.png').convert()]
-
-
-    # tiles = [pygame.image.load('images/tiles/grass.png').convert(),
-    #          pygame.image.load('images/tiles/wall.png').convert(),
-    #          pygame.image.load('images/tiles/water.png').convert(),
-    #          pygame.image.load('images/tiles/wood.png').convert()]
 
     # NOTICE (Paolo) : ID(1) is used for streets
     tiles = dict([(0, pygame.image.load('images/tiles/grass.png').convert()),
@@ -85,7 +74,7 @@ def gameloop():
                   (5, pygame.image.load('images/tiles/factory.png').convert()),
                   (6, pygame.image.load('images/tiles/farm.png').convert())],)
 
-    blocking_tiles = []
+    blocking_tiles = [3,4]
     bg = pygame.image.load('images/bgs/stardust.png').convert()
 
     # Generate our map
@@ -96,9 +85,7 @@ def gameloop():
     players = [playerSprite(), ]
 
     # This should be moved to the map drawing to handle coordinates for x,y and offset.
-    coins = [
-        itemSprite((500, 300)),
-    ]
+    coins = [itemSprite((500, 300)), ]
 
     # Render our groups to the display
     player_group = pygame.sprite.RenderPlain(*players)
@@ -140,7 +127,7 @@ def gameloop():
                     pygame.quit()
                     sys.exit(1)
 
-        # Key Bindings
+        # Key Bindings for player movements
         keys = pygame.key.get_pressed()
 
         if not ypos == len(map) - 1 and keys[K_LEFT] or keys[K_a] and keys[K_LSHIFT]:
@@ -176,33 +163,28 @@ def gameloop():
                 walk[random.randrange(2)].play()
                 player_group.update('d')
 
+        # Build actions event
         if not xpos == len(map[0]) - 1 and keys[K_b]:
-
-                actions.build_street(world, ypos, xpos)
-
-                walk[random.randrange(2)].play()
-                player_group.update('d')
+            actions.build_street(world, ypos, xpos)
+            walk[random.randrange(2)].play()
+            #player_group.update('d')
 
         if not xpos == len(map[0]) - 1 and keys[K_h]:
-
-                actions.build_house(world, ypos, xpos)
-
-                walk[random.randrange(2)].play()
-                player_group.update('d')
+            actions.build_house(world, ypos, xpos)
+            walk[random.randrange(2)].play()
+            #player_group.update('d')
 
         if not xpos == len(map[0]) - 1 and keys[K_g]:
-
-                actions.build_farm(world, ypos, xpos)
-
-                walk[random.randrange(2)].play()
-                player_group.update('d')
+            actions.build_farm(world, ypos, xpos)
+            walk[random.randrange(2)].play()
+            #player_group.update('d')
 
         if not xpos == len(map[0]) - 1 and keys[K_f]:
             actions.build_factory(world, ypos, xpos)
-
             walk[random.randrange(2)].play()
-            player_group.update('d')
+            #player_group.update('d')
 
+        #test_group.update(1)
 
         if health < 100:
             health += regen
@@ -229,8 +211,9 @@ def gameloop():
         collisions = pygame.sprite.spritecollide(players[0], coin_group, True)
         coin_group.update(collisions)
         coin_group.draw(display)
-
         player_group.draw(display)
+
+        display.blit(test_image, (xoffset, yoffset))
 
         # Info
         if info_toggle:

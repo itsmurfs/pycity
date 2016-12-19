@@ -3,5 +3,5 @@ display_height = 800
 display_width = 600
 save = False
 fps_setting = 16
-map_size_x = 100
-map_size_y = 100
+map_size_x = 200
+map_size_y = 200
