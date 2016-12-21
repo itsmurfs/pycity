@@ -8,7 +8,6 @@ def generateMap():
 
     world = terrain.Map(config.map_size_x, config.map_size_y)
     tiles = world.get_terrain()
-    print(tiles)
 
     return world
 

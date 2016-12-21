@@ -74,7 +74,7 @@ def gameloop():
                   (5, pygame.image.load('images/tiles/factory.png').convert()),
                   (6, pygame.image.load('images/tiles/farm.png').convert())],)
 
-    blocking_tiles = [3,4]
+    blocking_tiles = []
     bg = pygame.image.load('images/bgs/stardust.png').convert()
 
     # Generate our map
